@@ -12,15 +12,12 @@ import javax.swing.JFrame;
  *
  * @author Andras Sarro <>
  */
-public class FoAblak extends javax.swing.JFrame {
+public class FoAblak extends JFrame {
 
-    private GameLogic gameLogic;
     private JButton[] buttons;
-    private JFrame frame;
 
     public FoAblak() {
         setTitle("TIC-TAC-TOE");
-        frame = this.frame;
         buttons = new JButton[9];
         initComponents();
         for (int i = 0; i < buttons.length; i++) {
@@ -32,7 +29,7 @@ public class FoAblak extends javax.swing.JFrame {
 
         setLocationRelativeTo(this);
 
-        gameLogic = new GameLogic(buttons, frame);
+        new GameLogic(buttons, this);
     }
 
     /**

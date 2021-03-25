@@ -22,7 +22,7 @@ public final class GameLogic {
     private String[][] signBoard;
     private JButton[] gameButtons;
     private JFrame gameBoard;
-    private final int NUMBER_OF_BUTTONS_PER_SIDE = 3;
+    private final int BUTTONS_PER_SIDE = 3;
     private final Font BUTTON_TEXT_FONT = new Font("Arial", Font.PLAIN, 40);
 
     public GameLogic() {
@@ -31,7 +31,7 @@ public final class GameLogic {
     public GameLogic(JButton[] buttons, JFrame frame) {
         this.gameBoard = frame;
         gameButtons = new JButton[buttons.length];
-        signBoard = new String[NUMBER_OF_BUTTONS_PER_SIDE][NUMBER_OF_BUTTONS_PER_SIDE];
+        signBoard = new String[BUTTONS_PER_SIDE][BUTTONS_PER_SIDE];
         gameButtons = buttons;
         actualPlayer = "X";
         
@@ -67,8 +67,8 @@ public final class GameLogic {
     }
 
     private void nextMove(JButton button) {
-        int row = Integer.parseInt(button.getName()) / NUMBER_OF_BUTTONS_PER_SIDE;
-        int column = Integer.parseInt(button.getName()) % NUMBER_OF_BUTTONS_PER_SIDE;
+        int row = Integer.parseInt(button.getName()) / BUTTONS_PER_SIDE;
+        int column = Integer.parseInt(button.getName()) % BUTTONS_PER_SIDE;
 
         signBoard[row][column] = actualPlayer;
 
