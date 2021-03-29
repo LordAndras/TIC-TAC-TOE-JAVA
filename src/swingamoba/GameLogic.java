@@ -31,12 +31,11 @@ public final class GameLogic {
     public GameLogic(JButton[] buttons, JFrame frame) {
         this.gameBoard = frame;
         gameButtons = new JButton[buttons.length];
-        signBoard = new String[BUTTONS_PER_SIDE][BUTTONS_PER_SIDE];
         gameButtons = buttons;
         actualPlayer = "X";
-        
+
         tableInit();
-        
+
         for (JButton gameButton : gameButtons) {
             gameButton.addActionListener((ActionEvent e) -> {
                 JButton clickedButton = (JButton) e.getSource();
@@ -51,14 +50,15 @@ public final class GameLogic {
     }
 
     public void tableInit() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        signBoard = new String[BUTTONS_PER_SIDE][BUTTONS_PER_SIDE];
+        for (int i = 0; i < BUTTONS_PER_SIDE; i++) {
+            for (int j = 0; j < BUTTONS_PER_SIDE; j++) {
                 signBoard[i][j] = " ";
             }
         }
     }
 
-    private void switchPlayer() {
+    public void switchPlayer() {
         if (actualPlayer.equals("X")) {
             actualPlayer = "O";
         } else {
@@ -89,35 +89,80 @@ public final class GameLogic {
         }
     }
 
-    private boolean gameWon() {
+    public boolean gameWon() {
         boolean won = false;
+        if (roundIndex > 4) {
+            for (String[] tabla1 : signBoard) {
+                if (tabla1[0].equals(tabla1[1]) && tabla1[1].equals(tabla1[2]) && !tabla1[0].equals(" ")) {
+                    won = true;
+                }
+            }
+            for (int j = 0; j < signBoard.length; j++) {
+                if (signBoard[0][j].equals(signBoard[1][j]) && signBoard[1][j].equals(signBoard[2][j]) && !signBoard[0][j].equals(" ")) {
+                    won = true;
+                }
+            }
+            if (signBoard[0][0].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][2]) && !signBoard[0][0].equals(" ")) {
+                won = true;
+            }
 
-        for (String[] tabla1 : signBoard) {
-            if (tabla1[0].equals(tabla1[1]) && tabla1[1].equals(tabla1[2]) && !tabla1[0].equals(" ")) {
+            if (signBoard[0][2].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][0]) && !signBoard[2][0].equals(" ")) {
                 won = true;
             }
         }
-        for (int j = 0; j < signBoard.length; j++) {
-            if (signBoard[0][j].equals(signBoard[1][j]) && signBoard[1][j].equals(signBoard[2][j]) && !signBoard[0][j].equals(" ")) {
-                won = true;
-            }
-        }
-        if (signBoard[0][0].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][2]) && !signBoard[0][0].equals(" ")) {
-            won = true;
-        }
-
-        if (signBoard[0][2].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][0]) && !signBoard[2][0].equals(" ")) {
-            won = true;
-        }
-
         return won;
     }
 
-    private boolean gameEnd() {
+    public boolean gameEnd() {
         if (gameWon()) {
             return true;
         } else {
             return roundIndex == 9;
         }
     }
+
+    public int getRoundIndex() {
+        return roundIndex;
+    }
+
+    public void setRoundIndex(int roundIndex) {
+        this.roundIndex = roundIndex;
+    }
+
+    public String getActualPlayer() {
+        return actualPlayer;
+    }
+
+    public void setActualPlayer(String actualPlayer) {
+        this.actualPlayer = actualPlayer;
+    }
+
+    public String[][] getSignBoard() {
+        return signBoard;
+    }
+
+    public void setSignBoard(String[][] signBoard) {
+        this.signBoard = signBoard;
+    }
+
+    public JButton[] getGameButtons() {
+        return gameButtons;
+    }
+
+    public void setGameButtons(JButton[] gameButtons) {
+        this.gameButtons = gameButtons;
+    }
+
+    public JFrame getGameBoard() {
+        return gameBoard;
+    }
+
+    public void setGameBoard(JFrame gameBoard) {
+        this.gameBoard = gameBoard;
+    }
+
+    public int getBUTTONS_PER_SIDE() {
+        return BUTTONS_PER_SIDE;
+    }
+
 }
