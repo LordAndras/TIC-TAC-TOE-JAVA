@@ -91,24 +91,22 @@ public final class GameLogic {
 
     public boolean gameWon() {
         boolean won = false;
-        if (roundIndex > 4) {
-            for (String[] tabla1 : signBoard) {
-                if (tabla1[0].equals(tabla1[1]) && tabla1[1].equals(tabla1[2]) && !tabla1[0].equals(" ")) {
-                    won = true;
-                }
-            }
-            for (int j = 0; j < signBoard.length; j++) {
-                if (signBoard[0][j].equals(signBoard[1][j]) && signBoard[1][j].equals(signBoard[2][j]) && !signBoard[0][j].equals(" ")) {
-                    won = true;
-                }
-            }
-            if (signBoard[0][0].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][2]) && !signBoard[0][0].equals(" ")) {
+        for (String[] tabla1 : signBoard) {
+            if (tabla1[0].equals(tabla1[1]) && tabla1[1].equals(tabla1[2]) && !tabla1[0].equals(" ")) {
                 won = true;
             }
+        }
+        for (int j = 0; j < signBoard.length; j++) {
+            if (signBoard[0][j].equals(signBoard[1][j]) && signBoard[1][j].equals(signBoard[2][j]) && !signBoard[0][j].equals(" ")) {
+                won = true;
+            }
+        }
+        if (signBoard[0][0].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][2]) && !signBoard[0][0].equals(" ")) {
+            won = true;
+        }
 
-            if (signBoard[0][2].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][0]) && !signBoard[2][0].equals(" ")) {
-                won = true;
-            }
+        if (signBoard[0][2].equals(signBoard[1][1]) && signBoard[1][1].equals(signBoard[2][0]) && !signBoard[2][0].equals(" ")) {
+            won = true;
         }
         return won;
     }

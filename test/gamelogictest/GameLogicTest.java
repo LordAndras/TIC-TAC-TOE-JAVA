@@ -5,6 +5,8 @@
  */
 package gamelogictest;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import swingamoba.GameLogic;
@@ -15,12 +17,15 @@ import swingamoba.GameLogic;
  */
 public class GameLogicTest {
 
-    public GameLogicTest() {
-    }
-
     @Test
-    public void constructorTest() {
-
+    public void gameLogicConstructorTest() {
+        JFrame testFrame = new JFrame();
+        JButton[] testButtons = {new JButton(), new JButton(), new JButton()};
+        try {
+        new GameLogic(testButtons, testFrame);
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
     }
 
     @Test
@@ -52,7 +57,6 @@ public class GameLogicTest {
     @Test
     public void gameWonTest() {
         GameLogic gl = new GameLogic();
-        gl.setRoundIndex(7);
         gl.tableInit();
 
         assertEquals(false, gl.gameWon());
@@ -79,12 +83,11 @@ public class GameLogicTest {
         assertEquals(false, gl.gameWon());
 
         gl.tableInit();
-        gl.setRoundIndex(2);
         gl.getSignBoard()[1][2] = "O";
         gl.getSignBoard()[2][2] = "O";
         gl.getSignBoard()[0][2] = "O";
-        
-        assertEquals(false, gl.gameWon());
+
+        assertEquals(true, gl.gameWon());
     }
 
     @Test
@@ -97,7 +100,7 @@ public class GameLogicTest {
         gl.setRoundIndex(9);
         assertEquals(true, gl.gameEnd());
 
-        gl.setRoundIndex(5);
+        gl.setRoundIndex(6);
         gl.getSignBoard()[1][2] = "O";
         gl.getSignBoard()[2][2] = "O";
         gl.getSignBoard()[0][2] = "O";
@@ -105,12 +108,11 @@ public class GameLogicTest {
         assertEquals(true, gl.gameEnd());
 
         gl.tableInit();
-        gl.setRoundIndex(3);
         gl.getSignBoard()[1][1] = "X";
         gl.getSignBoard()[1][2] = "X";
         gl.getSignBoard()[1][0] = "X";
 
-        assertEquals(false, gl.gameEnd());
+        assertEquals(true, gl.gameEnd());
     }
 
 }
