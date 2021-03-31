@@ -49,7 +49,8 @@ public final class GameLogic {
         }
     }
 
-    public void tableInit() {
+    
+    protected void tableInit() {
         signBoard = new String[BUTTONS_PER_SIDE][BUTTONS_PER_SIDE];
         for (int i = 0; i < BUTTONS_PER_SIDE; i++) {
             for (int j = 0; j < BUTTONS_PER_SIDE; j++) {
@@ -58,7 +59,7 @@ public final class GameLogic {
         }
     }
 
-    public void switchPlayer() {
+    protected void switchPlayer() {
         if (actualPlayer.equals("X")) {
             actualPlayer = "O";
         } else {
@@ -66,7 +67,7 @@ public final class GameLogic {
         }
     }
 
-    private void nextMove(JButton button) {
+    protected void nextMove(JButton button) {
         int row = Integer.parseInt(button.getName()) / BUTTONS_PER_SIDE;
         int column = Integer.parseInt(button.getName()) % BUTTONS_PER_SIDE;
 
@@ -89,7 +90,7 @@ public final class GameLogic {
         }
     }
 
-    public boolean gameWon() {
+    protected boolean gameWon() {
         boolean won = false;
         for (String[] tabla1 : signBoard) {
             if (tabla1[0].equals(tabla1[1]) && tabla1[1].equals(tabla1[2]) && !tabla1[0].equals(" ")) {
@@ -111,7 +112,7 @@ public final class GameLogic {
         return won;
     }
 
-    public boolean gameEnd() {
+    protected boolean gameEnd() {
         if (gameWon()) {
             return true;
         } else {
