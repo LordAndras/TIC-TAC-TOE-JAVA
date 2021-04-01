@@ -28,7 +28,7 @@ public class FoAblak extends JFrame {
         }
 
         setLocationRelativeTo(this);
-
+        
         new GameLogic(buttons, this);
     }
 

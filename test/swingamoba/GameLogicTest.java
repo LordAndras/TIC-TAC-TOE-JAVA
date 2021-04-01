@@ -16,9 +16,6 @@ import static org.junit.Assert.*;
  */
 public class GameLogicTest {
 
-    public GameLogicTest() {
-    }
-
     @Test
     public void gameLogicConstructorTest() {
         JFrame testFrame = new JFrame();
@@ -69,7 +66,6 @@ public class GameLogicTest {
 
     @Test
     public void testGameWon() {
-        System.out.println("gameWon");
         GameLogic gamelogic = new GameLogic();
         gamelogic.tableInit();
 
@@ -106,7 +102,6 @@ public class GameLogicTest {
 
     @Test
     public void testGameEnd() {
-        System.out.println("gameEnd");
         GameLogic gamelogic = new GameLogic();
         gamelogic.tableInit();
 
